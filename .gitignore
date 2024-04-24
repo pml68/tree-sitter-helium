@@ -29,8 +29,8 @@ dist/
 *.dll
 *.pc
 
-# Example dirs
-/examples/*/
+# Examples
+examples/
 
 # Grammar volatiles
 *.wasm
