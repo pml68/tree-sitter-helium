@@ -84,9 +84,9 @@ module.exports = grammar({
       ']'
     ),
 
-    function_identifier: $ => /[a-z_][a-z0-9_]+/,
+    function_identifier: $ => /[a-z_][a-z0-9_]*/,
 
-    identifier: $ => /[a-z_][a-z0-9_:]+/,
+    identifier: $ => /[a-z_][a-z0-9_:]*/,
 
     number: $ => /\d+/,
 
