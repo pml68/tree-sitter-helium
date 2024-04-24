@@ -2,6 +2,10 @@
   "name": "tree-sitter-helium",
   "version": "0.1.0",
   "description": "Tree-sitter parser for Helium ASM",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pml68/tree-sitter-helium"
+  },
   "scripts": {
     "build": "tree-sitter generate && node-gyp configure && node-gyp build",
     "test": "tree-sitter test",
