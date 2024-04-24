@@ -6,11 +6,15 @@
 (number) @number
 (string) @string
 
-(value) @attribute
+(value) @attribute 
 
 "mov" @keyword
 "=" @operator
 
-(register) @constant.builtin
+"," @punctuation.delimiter
+":" @punctuation.delimiter
+";" @punctuation.delimiter
 
-(identifier) @attribute
+(register) @constant.builtin
+(variable_declaration (identifier) @attribute)
+(function_declaration (identifier) @function)
