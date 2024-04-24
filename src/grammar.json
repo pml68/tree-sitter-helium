@@ -107,7 +107,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "identifier"
+          "name": "function_identifier"
         },
         {
           "type": "STRING",
@@ -233,9 +233,13 @@
         }
       ]
     },
+    "function_identifier": {
+      "type": "PATTERN",
+      "value": "[a-z_][a-z0-9_]+"
+    },
     "identifier": {
       "type": "PATTERN",
-      "value": "[a-z]+"
+      "value": "[a-z_][a-z0-9_:]+"
     },
     "number": {
       "type": "PATTERN",
