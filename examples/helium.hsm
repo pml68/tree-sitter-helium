@@ -1,0 +1,2 @@
+u8 ptr num = 100;
+main:mov $A, [num];
