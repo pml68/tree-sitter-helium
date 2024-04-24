@@ -92,7 +92,7 @@ module.exports = grammar({
 
     string: $ => seq(
       '"',
-      /[^"]+/,
+      /[^"]*/,
       '"'
     ),
   }
