@@ -66,10 +66,6 @@ module.exports = grammar({
 
     register_identifier: $ => choice(
       /[0-7]/,
-      $.register_value
-    ),
-
-    register_value: $ => choice(
       /[A-C]/,
       'X',
       'Y',

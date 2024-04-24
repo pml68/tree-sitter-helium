@@ -182,15 +182,6 @@
           "value": "[0-7]"
         },
         {
-          "type": "SYMBOL",
-          "name": "register_value"
-        }
-      ]
-    },
-    "register_value": {
-      "type": "CHOICE",
-      "members": [
-        {
           "type": "PATTERN",
           "value": "[A-C]"
         },

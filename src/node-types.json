@@ -75,21 +75,6 @@
   {
     "type": "register_identifier",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "register_value",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "register_value",
-    "named": true,
     "fields": {}
   },
   {
