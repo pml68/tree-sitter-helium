@@ -1,14 +1,14 @@
-[
- (pointer_type)
- (normal_type)
-] @type.builtin
+(normal_type) @type.builtin
 
 (number) @number
 (string) @string
 
 (value) @attribute
 
-"mov" @keyword
+[
+ "ptr"
+ "mov"
+] @keyword
 "=" @operator
 
 "," @punctuation.delimiter
