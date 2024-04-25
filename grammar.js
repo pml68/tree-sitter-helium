@@ -109,7 +109,7 @@ module.exports = grammar({
     char: $ => seq(
       '\'',
       choice(
-        token.immediate(/[^"\\\n\r]/),
+        token.immediate(/[^'\\\n\r]/),
         $.escape_sequence1
       ),
       '\''

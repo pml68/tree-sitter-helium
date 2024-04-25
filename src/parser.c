@@ -545,7 +545,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == '\f' ||
           lookahead == ' ') ADVANCE(49);
       if (lookahead != 0 &&
-          lookahead != '"') ADVANCE(49);
+          lookahead != '\'') ADVANCE(49);
       END_STATE();
     case 11:
       if (lookahead == 'H') ADVANCE(33);
