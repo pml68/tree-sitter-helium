@@ -21,7 +21,7 @@
 [
  ";"
  ":"
- ":"
+ ","
 ] @punctuation.delimiter
 
 (register) @constant.builtin
