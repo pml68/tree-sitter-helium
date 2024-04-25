@@ -9,6 +9,7 @@
   "scripts": {
     "build": "tree-sitter generate && node-gyp configure && node-gyp build",
     "test": "tree-sitter test",
+    "playground": "tree-sitter build --wasm && tree-sitter web-ui",
     "install": "node-gyp-build",
     "prebuildify": "prebuildify --napi --strip"
   },
@@ -37,8 +38,7 @@
       "scope": "source.hsm",
       "file-types": [
         "hsm"
-      ],
-      "injection-regex": "hsm"
+      ]
     }
   ],
   "files": [

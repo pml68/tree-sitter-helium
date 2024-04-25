@@ -1,6 +1,14 @@
 module.exports = grammar({
   name: 'helium',
 
+  word: $ => $.identifier,
+
+  extras: $ => [
+    $.line_comment,
+    $.block_comment,
+    /[ \t\f\r\n]/
+  ],
+
   rules: {
     source_file: $ => repeat($._declaration),
 
@@ -34,7 +42,7 @@ module.exports = grammar({
     ),
 
     _value: $ => choice(
-      $.number,
+      $.decimal,
       $.string
     ),
 
@@ -42,14 +50,15 @@ module.exports = grammar({
       $.identifier,
       ':',
       repeat(
-        seq(
-          $._statement, ';'
-        )
+          $._statement
       )
     ),
 
-    _statement: $ => choice(
-      $.mov_statement
+    _statement: $ => seq(
+      choice(
+        $.mov_statement
+      ),
+      ';'
     ),
 
     mov_statement: $ => seq(
@@ -82,12 +91,32 @@ module.exports = grammar({
 
     identifier: $ => /([a-z_][a-z0-9_:]*[a-z_])|([a-z_])/,
 
-    number: $ => /\d+/,
+    decimal: $ => /\d+/,
 
     string: $ => seq(
       '"',
-      /[^"]*/,
+      repeat(choice(
+        token.immediate(/[^"\\\n\r]+/),
+        $.escape_sequence
+      )),
       '"'
     ),
+
+    escape_sequence: $ => token.immediate(
+      seq(
+        '\\',
+        /[\\"]/
+      )
+    ),
+
+    line_comment: $ => token(seq('//', /.*/)),
+
+    block_comment: $ => token(
+      seq(
+        '/*',
+        /[^*]*\*+([^/*][^*]*\*+)*/,
+        '/'
+      )
+    )
   }
 })

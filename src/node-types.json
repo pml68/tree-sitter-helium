@@ -99,7 +99,17 @@
   {
     "type": "string",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_sequence",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "value",
@@ -125,15 +135,15 @@
       "required": true,
       "types": [
         {
+          "type": "decimal",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
         {
           "type": "normal_type",
-          "named": true
-        },
-        {
-          "type": "number",
           "named": true
         },
         {
@@ -204,6 +214,18 @@
     "named": false
   },
   {
+    "type": "block_comment",
+    "named": true
+  },
+  {
+    "type": "decimal",
+    "named": true
+  },
+  {
+    "type": "escape_sequence",
+    "named": true
+  },
+  {
     "type": "i8",
     "named": false
   },
@@ -212,12 +234,12 @@
     "named": true
   },
   {
-    "type": "mov",
-    "named": false
+    "type": "line_comment",
+    "named": true
   },
   {
-    "type": "number",
-    "named": true
+    "type": "mov",
+    "named": false
   },
   {
     "type": "ptr",
