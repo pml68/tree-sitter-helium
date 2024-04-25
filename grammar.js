@@ -112,11 +112,7 @@ module.exports = grammar({
     line_comment: $ => token(seq('//', /.*/)),
 
     block_comment: $ => token(
-      seq(
-        '/*',
-        /[^*]*\*+([^/*][^*]*\*+)*/,
-        '/'
-      )
+      /\/\*[^*]*\*+([^/*][^*]*\*+)*\//,
     )
   }
 })
