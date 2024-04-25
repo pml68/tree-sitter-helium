@@ -39,7 +39,7 @@ module.exports = grammar({
     ),
 
     function_declaration: $ => seq(
-      $.function_identifier,
+      $.identifier,
       ':',
       repeat(
         seq(
@@ -80,9 +80,7 @@ module.exports = grammar({
       ']'
     ),
 
-    function_identifier: $ => /[a-z_][a-z0-9_]*/,
-
-    identifier: $ => /[a-z_][a-z0-9_:]*/,
+    identifier: $ => /([a-z_][a-z0-9_:]*[a-z_])|([a-z_])/,
 
     number: $ => /\d+/,
 

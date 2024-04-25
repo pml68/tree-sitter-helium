@@ -8,7 +8,7 @@
       "required": true,
       "types": [
         {
-          "type": "function_identifier",
+          "type": "identifier",
           "named": true
         },
         {
@@ -202,10 +202,6 @@
   {
     "type": "b1",
     "named": false
-  },
-  {
-    "type": "function_identifier",
-    "named": true
   },
   {
     "type": "i8",
