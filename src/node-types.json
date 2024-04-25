@@ -4,9 +4,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
+        {
+          "type": "character",
+          "named": true
+        },
         {
           "type": "escape_sequence1",
           "named": true
@@ -236,6 +240,10 @@
   },
   {
     "type": "block_comment",
+    "named": true
+  },
+  {
+    "type": "character",
     "named": true
   },
   {

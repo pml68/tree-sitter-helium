@@ -93,8 +93,6 @@ module.exports = grammar({
       ']'
     ),
 
-    identifier: _ => /([a-z_][a-z0-9_:]*[a-z_])|([a-z_])/,
-
     decimal: _ => /\d+/,
 
     string: $ => seq(
@@ -108,11 +106,9 @@ module.exports = grammar({
 
     char: $ => seq(
       '\'',
-      repeat1(
-        choice(
-          token.immediate(/'[^'\\\n\r]'/),
-          $.escape_sequence1
-        )
+      choice(
+        alias(token.immediate(/[^'\\\n\r]?/), $.character),
+        $.escape_sequence1
       ),
       '\''
     ),
@@ -124,12 +120,9 @@ module.exports = grammar({
       )
     ),
 
-    escape_sequence1: _ => token.immediate(
-      seq(
-        '\\',
-        /[\\']/
-      )
-    ),
+    escape_sequence1: _ => token.immediate(/\\[\\']/),
+
+    identifier: _ => /([a-z_][a-z0-9_:]*[a-z_])|([a-z_])/,
 
     line_comment: _ => token(seq('//', /.*/)),
 
