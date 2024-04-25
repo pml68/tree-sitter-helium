@@ -48,15 +48,35 @@
       ]
     },
     "_type": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
           "name": "normal_type"
         },
         {
-          "type": "SYMBOL",
-          "name": "pointer_type"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "endian"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "pointer"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -77,18 +97,22 @@
         }
       ]
     },
-    "pointer_type": {
-      "type": "SEQ",
+    "endian": {
+      "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "normal_type"
+          "type": "STRING",
+          "value": "le"
         },
         {
           "type": "STRING",
-          "value": "ptr"
+          "value": "be"
         }
       ]
+    },
+    "pointer": {
+      "type": "STRING",
+      "value": "ptr"
     },
     "_value": {
       "type": "CHOICE",
@@ -100,6 +124,10 @@
         {
           "type": "SYMBOL",
           "name": "string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "char"
         }
       ]
     },
@@ -265,6 +293,35 @@
         }
       ]
     },
+    "char": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "'"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "PATTERN",
+                "value": "[^\"\\\\\\n\\r]"
+              }
+            },
+            {
+              "type": "SYMBOL",
+              "name": "escape_sequence1"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "'"
+        }
+      ]
+    },
     "escape_sequence": {
       "type": "IMMEDIATE_TOKEN",
       "content": {
@@ -277,6 +334,22 @@
           {
             "type": "PATTERN",
             "value": "[\\\\\"]"
+          }
+        ]
+      }
+    },
+    "escape_sequence1": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "\\"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[\\\\']"
           }
         ]
       }

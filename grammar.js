@@ -25,9 +25,10 @@ module.exports = grammar({
       ';'
     ),
 
-    _type: $ => choice(
+    _type: $ => seq(
       $.normal_type,
-      $.pointer_type
+      optional($.endian),
+      optional($.pointer)
     ),
 
     normal_type: $ => choice(
@@ -36,14 +37,17 @@ module.exports = grammar({
       'b1'
     ),
 
-    pointer_type: $ => seq(
-      $.normal_type,
-      'ptr'
+    endian: $ => choice(
+      'le',
+      'be'
     ),
+
+    pointer: $ => 'ptr',
 
     _value: $ => choice(
       $.decimal,
-      $.string
+      $.string,
+      $.char
     ),
 
     function_declaration: $ => seq(
@@ -102,10 +106,26 @@ module.exports = grammar({
       '"'
     ),
 
+    char: $ => seq(
+      '\'',
+      choice(
+        token.immediate(/[^"\\\n\r]/),
+        $.escape_sequence1
+      ),
+      '\''
+    ),
+
     escape_sequence: $ => token.immediate(
       seq(
         '\\',
         /[\\"]/
+      )
+    ),
+
+    escape_sequence1: $ => token.immediate(
+      seq(
+        '\\',
+        /[\\']/
       )
     ),
 

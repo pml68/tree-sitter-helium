@@ -2,8 +2,12 @@
 
 (decimal) @number
 (string) @string
+(char) @character
 
-(escape_sequence) @string.escape
+[
+ (escape_sequence)
+ (escape_sequence1)
+ ] @string.escape
 
 (value) @attribute
 
@@ -13,9 +17,13 @@
 ] @comment
 
 [
- "ptr"
+ (pointer)
  "mov"
 ] @keyword
+[
+ "be"
+ "le"
+] @attribute.builtin
 "=" @operator
 
 [
