@@ -31,18 +31,18 @@ module.exports = grammar({
       optional($.pointer)
     ),
 
-    normal_type: $ => choice(
+    normal_type: _ => choice(
       'u8',
       'i8',
       'b1'
     ),
 
-    endian: $ => choice(
+    endian: _ => choice(
       'le',
       'be'
     ),
 
-    pointer: $ => 'ptr',
+    pointer: _ => 'ptr',
 
     _value: $ => choice(
       $.decimal,
@@ -77,7 +77,7 @@ module.exports = grammar({
       $.register_identifier
     ),
 
-    register_identifier: $ => choice(
+    register_identifier: _ => choice(
       /[0-7]/,
       /[A-C]/,
       'X',
@@ -93,9 +93,9 @@ module.exports = grammar({
       ']'
     ),
 
-    identifier: $ => /([a-z_][a-z0-9_:]*[a-z_])|([a-z_])/,
+    identifier: _ => /([a-z_][a-z0-9_:]*[a-z_])|([a-z_])/,
 
-    decimal: $ => /\d+/,
+    decimal: _ => /\d+/,
 
     string: $ => seq(
       '"',
@@ -108,30 +108,32 @@ module.exports = grammar({
 
     char: $ => seq(
       '\'',
-      choice(
-        token.immediate(/[^'\\\n\r]?/),
-        $.escape_sequence1
+      repeat1(
+        choice(
+          token.immediate(/'[^'\\\n\r]'/),
+          $.escape_sequence1
+        )
       ),
       '\''
     ),
 
-    escape_sequence: $ => token.immediate(
+    escape_sequence: _ => token.immediate(
       seq(
         '\\',
         /[\\"]/
       )
     ),
 
-    escape_sequence1: $ => token.immediate(
+    escape_sequence1: _ => token.immediate(
       seq(
         '\\',
         /[\\']/
       )
     ),
 
-    line_comment: $ => token(seq('//', /.*/)),
+    line_comment: _ => token(seq('//', /.*/)),
 
-    block_comment: $ => token(
+    block_comment: _ => token(
       /\/\*[^*]*\*+([^/*][^*]*\*+)*\//,
     )
   }

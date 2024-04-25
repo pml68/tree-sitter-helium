@@ -301,20 +301,23 @@
           "value": "'"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "IMMEDIATE_TOKEN",
-              "content": {
-                "type": "PATTERN",
-                "value": "[^'\\\\\\n\\r]?"
+          "type": "REPEAT1",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "'[^'\\\\\\n\\r]'"
+                }
+              },
+              {
+                "type": "SYMBOL",
+                "name": "escape_sequence1"
               }
-            },
-            {
-              "type": "SYMBOL",
-              "name": "escape_sequence1"
-            }
-          ]
+            ]
+          }
         },
         {
           "type": "STRING",
