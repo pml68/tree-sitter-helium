@@ -95,32 +95,23 @@ module.exports = grammar({
 
     decimal: _ => /\d+/,
 
-    string: $ => seq(
-      '"',
-      repeat(choice(
-        token.immediate(/[^"\\\n\r]+/),
-        $.escape_sequence
-      )),
-      '"'
-    ),
-
     char: $ => seq(
       '\'',
       choice(
-        alias(token.immediate(/[^'\\\n\r]?/), $.character),
-        $.escape_sequence1
+        token.immediate(/[^'\\\n\r]/),
+        alias(token.immediate(/\\['\\]/), $.escape_sequence)
       ),
       '\''
     ),
 
-    escape_sequence: _ => token.immediate(
-      seq(
-        '\\',
-        /[\\"]/
-      )
+    string: $ => seq(
+      '"',
+      repeat(choice(
+        token.immediate(/[^"\\\n\r]+/),
+        alias(token.immediate(/\\["\\]/), $.escape_sequence)
+      )),
+      '"'
     ),
-
-    escape_sequence1: _ => token.immediate(/\\[\\']/),
 
     identifier: _ => /([a-z_][a-z0-9_:]*[a-z_])|([a-z_])/,
 

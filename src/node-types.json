@@ -5,14 +5,10 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "character",
-          "named": true
-        },
-        {
-          "type": "escape_sequence1",
+          "type": "escape_sequence",
           "named": true
         }
       ]
@@ -243,19 +239,11 @@
     "named": true
   },
   {
-    "type": "character",
-    "named": true
-  },
-  {
     "type": "decimal",
     "named": true
   },
   {
     "type": "escape_sequence",
-    "named": true
-  },
-  {
-    "type": "escape_sequence1",
     "named": true
   },
   {
