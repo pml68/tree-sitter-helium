@@ -17,7 +17,6 @@ module.exports = grammar({
 
     target_declaration: $ => seq(
       '#target',
-      ':',
       $.string,
       ';'
     ),

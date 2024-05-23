@@ -17,7 +17,7 @@
   "license": "GPL-3.0",
   "dependencies": {
     "node-addon-api": "^7.1.0",
-    "node-gyp-build": "^4.8.0"
+    "node-gyp-build": "^4.8.1"
   },
   "peerDependencies": {
     "tree-sitter": "^0.21.0"
@@ -28,8 +28,8 @@
     }
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.22.5",
-    "prebuildify": "^6.0.0"
+    "prebuildify": "^6.0.1",
+    "tree-sitter-cli": "^0.22.6"
   },
   "main": "bindings/node",
   "types": "bindings/node",
