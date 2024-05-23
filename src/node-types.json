@@ -1,20 +1,5 @@
 [
   {
-    "type": "char",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "escape_sequence",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "endian",
     "named": true,
     "fields": {}
@@ -95,6 +80,10 @@
           "named": true
         },
         {
+          "type": "target_declaration",
+          "named": true
+        },
+        {
           "type": "variable_declaration",
           "named": true
         }
@@ -111,6 +100,21 @@
       "types": [
         {
           "type": "escape_sequence",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "target_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "string",
           "named": true
         }
       ]
@@ -139,10 +143,6 @@
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "char",
-          "named": true
-        },
         {
           "type": "decimal",
           "named": true
@@ -175,11 +175,11 @@
     "named": false
   },
   {
-    "type": "$",
+    "type": "#target",
     "named": false
   },
   {
-    "type": "'",
+    "type": "$",
     "named": false
   },
   {

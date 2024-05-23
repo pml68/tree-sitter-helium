@@ -2,8 +2,6 @@
 
 (decimal) @number
 (string) @string
-(char) @character
-
 (escape_sequence) @string.escape
 
 (value) @attribute
@@ -16,6 +14,7 @@
 [
  (pointer)
  "mov"
+ "#target"
 ] @keyword
 [
  "be"

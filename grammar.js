@@ -10,7 +10,17 @@ module.exports = grammar({
   ],
 
   rules: {
-    source_file: $ => repeat($._declaration),
+    source_file: $ => seq(
+      optional($.target_declaration),
+      repeat($._declaration)
+    ),
+
+    target_declaration: $ => seq(
+      '#target',
+      ':',
+      $.string,
+      ';'
+    ),
 
     _declaration: $ => choice(
       $.variable_declaration,
@@ -47,7 +57,7 @@ module.exports = grammar({
     _value: $ => choice(
       $.decimal,
       $.string,
-      $.char
+      //$.char
     ),
 
     function_declaration: $ => seq(
@@ -95,14 +105,12 @@ module.exports = grammar({
 
     decimal: _ => /\d+/,
 
-    char: $ => seq(
-      '\'',
-      choice(
-        token.immediate(/[^'\\\n\r]/),
-        alias(token.immediate(/\\['\\]/), $.escape_sequence)
-      ),
-      '\''
+    /*
+    char: $ => choice(
+      token.immediate(/'([^'\\\n\r]){1}'/),
+      alias(token.immediate(/'(\\['\\]){1}'/), $.escape_sequence)
     ),
+    */
 
     string: $ => seq(
       '"',
