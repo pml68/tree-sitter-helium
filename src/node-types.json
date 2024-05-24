@@ -1,8 +1,85 @@
 [
   {
+    "type": "array_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "endian",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "normal_type",
+          "named": true
+        },
+        {
+          "type": "pointer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "binary_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "endian",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "function_declaration",
@@ -32,11 +109,7 @@
       "required": true,
       "types": [
         {
-          "type": "register",
-          "named": true
-        },
-        {
-          "type": "value",
+          "type": "statement_parameter",
           "named": true
         }
       ]
@@ -76,6 +149,10 @@
       "required": false,
       "types": [
         {
+          "type": "array_declaration",
+          "named": true
+        },
+        {
           "type": "function_declaration",
           "named": true
         },
@@ -85,6 +162,25 @@
         },
         {
           "type": "variable_declaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "statement_parameter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "register",
+          "named": true
+        },
+        {
+          "type": "value",
           "named": true
         }
       ]
@@ -144,11 +240,11 @@
       "required": true,
       "types": [
         {
-          "type": "decimal",
+          "type": "endian",
           "named": true
         },
         {
-          "type": "endian",
+          "type": "expression",
           "named": true
         },
         {
@@ -161,10 +257,6 @@
         },
         {
           "type": "pointer",
-          "named": true
-        },
-        {
-          "type": "string",
           "named": true
         }
       ]
@@ -183,7 +275,39 @@
     "named": false
   },
   {
+    "type": "%",
+    "named": false
+  },
+  {
+    "type": "&",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
     "type": ",",
+    "named": false
+  },
+  {
+    "type": "-",
+    "named": false
+  },
+  {
+    "type": "/",
     "named": false
   },
   {
@@ -195,11 +319,23 @@
     "named": false
   },
   {
+    "type": "<<",
+    "named": false
+  },
+  {
     "type": "=",
     "named": false
   },
   {
+    "type": ">>",
+    "named": false
+  },
+  {
     "type": "F",
+    "named": false
+  },
+  {
+    "type": "MOV",
     "named": false
   },
   {
@@ -263,15 +399,23 @@
     "named": true
   },
   {
-    "type": "mov",
-    "named": false
-  },
-  {
     "type": "pointer",
     "named": true
   },
   {
+    "type": "str",
+    "named": false
+  },
+  {
+    "type": "u16",
+    "named": false
+  },
+  {
     "type": "u8",
+    "named": false
+  },
+  {
+    "type": "|",
     "named": false
   }
 ]

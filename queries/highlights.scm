@@ -13,7 +13,7 @@
 
 [
  (pointer)
- "mov"
+ "MOV"
  "#target"
 ] @keyword
 [
@@ -26,6 +26,8 @@
  ";"
  ":"
  ","
+ "("
+ ")"
 ] @punctuation.delimiter
 
 (register) @constant.builtin

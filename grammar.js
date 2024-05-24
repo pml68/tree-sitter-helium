@@ -23,15 +23,66 @@ module.exports = grammar({
 
     _declaration: $ => choice(
       $.variable_declaration,
-      $.function_declaration
+      $.function_declaration,
+      $.array_declaration,
     ),
 
     variable_declaration: $ => seq(
       $._type,
       $.identifier,
       '=',
-      $._value,
+      $._expression,
       ';'
+    ),
+
+    array_declaration: $ => seq(
+      seq(
+        $.normal_type,
+        seq(
+          '[',
+          optional($.decimal),
+          ']',
+        )
+      ),
+      optional($.endian),
+      $.pointer,
+      $.identifier,
+      '=',
+      $._expression,
+      repeat(
+        seq(
+          ',',
+          $._expression,
+        )
+      ),
+      ';'
+    ),
+
+    _expression: $ => choice(
+      $.expression,
+      seq(
+        '(',
+        $.expression,
+        ')',
+      )
+    ),
+
+    expression: $ => choice(
+      $.identifier,
+      $._value,
+      $.binary_expression,
+    ),
+
+    binary_expression: $ => choice(
+      prec.left(2, seq($._expression, '*', $._expression)),
+      prec.left(1, seq($._expression, '+', $._expression)),
+      prec.left(2, seq($._expression, '/', $._expression)),
+      prec.left(1, seq($._expression, '-', $._expression)),
+      prec.left(2, seq($._expression, '%', $._expression)),
+      prec.left(2, seq($._expression, '|', $._expression)),
+      prec.left(2, seq($._expression, '&', $._expression)),
+      prec.left(2, seq($._expression, '>>', $._expression)),
+      prec.left(2, seq($._expression, '<<', $._expression)),
     ),
 
     _type: $ => seq(
@@ -42,8 +93,10 @@ module.exports = grammar({
 
     normal_type: _ => choice(
       'u8',
+      'u16',
       'i8',
-      'b1'
+      'b1',
+      'str'
     ),
 
     endian: _ => choice(
@@ -63,7 +116,7 @@ module.exports = grammar({
       $.identifier,
       ':',
       repeat(
-          $._statement
+        $._statement
       )
     ),
 
@@ -75,9 +128,13 @@ module.exports = grammar({
     ),
 
     mov_statement: $ => seq(
-      'mov',
+      'MOV',
+      $.statement_parameter,
+      $.statement_parameter
+    ),
+
+    statement_parameter: $ => choice(
       $.register,
-      ',',
       $.value
     ),
 
