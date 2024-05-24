@@ -526,12 +526,54 @@
             {
               "type": "SYMBOL",
               "name": "mov_statement"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "jmp_statement"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "add_statement"
             }
           ]
         },
         {
           "type": "STRING",
           "value": ";"
+        }
+      ]
+    },
+    "add_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "ADD"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "statement_parameter"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "statement_parameter"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "register"
+        }
+      ]
+    },
+    "jmp_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "JMP"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
         }
       ]
     },
@@ -679,21 +721,17 @@
     "line_comment": {
       "type": "TOKEN",
       "content": {
-        "type": "PREC_LEFT",
-        "value": 2,
-        "content": {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "//"
-            },
-            {
-              "type": "PATTERN",
-              "value": ".*"
-            }
-          ]
-        }
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "//"
+          },
+          {
+            "type": "PATTERN",
+            "value": ".*"
+          }
+        ]
       }
     },
     "block_comment": {

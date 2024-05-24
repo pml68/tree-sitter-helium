@@ -14,6 +14,8 @@
 [
  (pointer)
  "MOV"
+ "JMP"
+ "ADD"
  "#target"
 ] @keyword
 [

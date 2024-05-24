@@ -122,9 +122,23 @@ module.exports = grammar({
 
     _statement: $ => seq(
       choice(
-        $.mov_statement
+        $.mov_statement,
+        $.jmp_statement,
+        $.add_statement
       ),
       ';'
+    ),
+
+    add_statement: $ => seq(
+      'ADD',
+      $.statement_parameter,
+      $.statement_parameter,
+      $.register
+    ),
+
+    jmp_statement: $ => seq(
+      'JMP',
+      $.identifier
     ),
 
     mov_statement: $ => seq(
