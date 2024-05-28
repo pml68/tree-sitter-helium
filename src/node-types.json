@@ -113,6 +113,10 @@
           "named": true
         },
         {
+          "type": "array_declaration",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -122,6 +126,10 @@
         },
         {
           "type": "mov_statement",
+          "named": true
+        },
+        {
+          "type": "variable_declaration",
           "named": true
         }
       ]
@@ -267,7 +275,7 @@
       "required": true,
       "types": [
         {
-          "type": "identifier",
+          "type": "expression",
           "named": true
         }
       ]

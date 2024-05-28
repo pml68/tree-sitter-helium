@@ -21,10 +21,13 @@ module.exports = grammar({
       ';'
     ),
 
-    _declaration: $ => choice(
-      $.variable_declaration,
-      $.function_declaration,
-      $.array_declaration,
+    _declaration: $ => seq(
+      choice(
+        $.variable_declaration,
+        $.function_declaration,
+        $.array_declaration,
+      ),
+      ';',
     ),
 
     variable_declaration: $ => seq(
@@ -32,7 +35,6 @@ module.exports = grammar({
       $.identifier,
       '=',
       $._expression,
-      ';'
     ),
 
     array_declaration: $ => seq(
@@ -55,7 +57,6 @@ module.exports = grammar({
           $._expression,
         )
       ),
-      ';'
     ),
 
     _expression: $ => choice(
@@ -124,7 +125,9 @@ module.exports = grammar({
       choice(
         $.mov_statement,
         $.jmp_statement,
-        $.add_statement
+        $.add_statement,
+        $.variable_declaration,
+        $.array_declaration,
       ),
       ';'
     ),
@@ -169,7 +172,7 @@ module.exports = grammar({
 
     value: $ => seq(
       '[',
-      $.identifier,
+      $._expression,
       ']'
     ),
 
