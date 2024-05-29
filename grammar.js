@@ -12,22 +12,38 @@ module.exports = grammar({
   rules: {
     source_file: $ => seq(
       optional($.target_declaration),
-      repeat($._declaration)
+      repeat(
+        choice(
+          $._declaration,
+          $.function_declaration,
+        )
+      )
     ),
 
     target_declaration: $ => seq(
       '#target',
       $.string,
-      ';'
+      choice(
+        seq(
+          ';',
+          optional('\n')
+        ),
+        '\n'
+      )
     ),
 
     _declaration: $ => seq(
       choice(
         $.variable_declaration,
-        $.function_declaration,
         $.array_declaration,
       ),
-      ';',
+      choice(
+        seq(
+          ';',
+          optional('\n')
+        ),
+        '\n'
+      )
     ),
 
     variable_declaration: $ => seq(
@@ -116,7 +132,7 @@ module.exports = grammar({
     function_declaration: $ => seq(
       $.identifier,
       ':',
-      repeat(
+      repeat1(
         $._statement
       )
     ),
@@ -128,16 +144,22 @@ module.exports = grammar({
         $.add_statement,
         $.hlt_statement,
         $.bnc_statement,
-        $.variable_declaration,
-        $.array_declaration,
       ),
-      ';'
+      choice(
+        seq(
+          ';',
+          optional('\n')
+        ),
+        '\n'
+      )
     ),
 
     add_statement: $ => seq(
       'ADD',
       $.statement_parameter,
+      optional(','),
       $.statement_parameter,
+      optional(','),
       $.register
     ),
 
@@ -154,6 +176,7 @@ module.exports = grammar({
     mov_statement: $ => seq(
       'MOV',
       $.statement_parameter,
+      optional(','),
       $.statement_parameter
     ),
 
@@ -203,7 +226,7 @@ module.exports = grammar({
       '"'
     ),
 
-    identifier: _ => /([a-z_][a-z0-9_:]*[a-z_])|([a-z_])/,
+    identifier: _ => /([a-z_][a-z0-9_:]*[a-z0-9_])|([a-z_])/,
 
     line_comment: _ => token(seq('//', /.*/)),
 
