@@ -538,6 +538,14 @@
             },
             {
               "type": "SYMBOL",
+              "name": "hlt_statement"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "bnc_statement"
+            },
+            {
+              "type": "SYMBOL",
               "name": "variable_declaration"
             },
             {
@@ -586,6 +594,19 @@
         }
       ]
     },
+    "bnc_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "BNC"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        }
+      ]
+    },
     "mov_statement": {
       "type": "SEQ",
       "members": [
@@ -602,6 +623,10 @@
           "name": "statement_parameter"
         }
       ]
+    },
+    "hlt_statement": {
+      "type": "STRING",
+      "value": "HLT"
     },
     "statement_parameter": {
       "type": "CHOICE",

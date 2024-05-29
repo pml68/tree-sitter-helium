@@ -13,9 +13,11 @@
 
 [
  (pointer)
+ (hlt_statement)
  "MOV"
  "JMP"
  "ADD"
+ "BNC"
  "#target"
 ] @keyword
 [
@@ -35,3 +37,5 @@
 (register) @constant.builtin
 (variable_declaration (identifier) @attribute)
 (function_declaration (identifier) @function)
+(jmp_statement (identifier) @function)
+(bnc_statement (identifier) @function)

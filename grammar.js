@@ -126,6 +126,8 @@ module.exports = grammar({
         $.mov_statement,
         $.jmp_statement,
         $.add_statement,
+        $.hlt_statement,
+        $.bnc_statement,
         $.variable_declaration,
         $.array_declaration,
       ),
@@ -144,11 +146,18 @@ module.exports = grammar({
       $.identifier
     ),
 
+    bnc_statement: $ => seq(
+      'BNC',
+      $.identifier
+    ),
+
     mov_statement: $ => seq(
       'MOV',
       $.statement_parameter,
       $.statement_parameter
     ),
+
+    hlt_statement: _ => "HLT",
 
     statement_parameter: $ => choice(
       $.register,
